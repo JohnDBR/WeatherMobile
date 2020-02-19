@@ -37,7 +37,8 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
             users.add(
                 ProfileModel(
                     "brad",
-                    "gibson"
+                    "gibson",
+                    R.drawable.banana //"https://randomuser.me/api/portraits/med/men/75.jpg"
                 )
             )
             count++

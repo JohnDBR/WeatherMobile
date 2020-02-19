@@ -9,7 +9,7 @@ import com.example.bonus.R
 class GlideBinding {
 
     @BindingAdapter("imageResource")
-    fun setImageResource(view: ImageView, imageUrl: Int) {
+    fun setImageResource(view: ImageView, imageUrl: Int) { //String
 
         val context = view.getContext()
 
