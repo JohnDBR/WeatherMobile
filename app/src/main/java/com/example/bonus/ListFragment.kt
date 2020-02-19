@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bonus.ProfileRecyclerViewAdapter
 import com.example.bonus.R
@@ -17,11 +20,12 @@ import kotlinx.android.synthetic.main.fragment_item_list.view.*
 /**
  * A simple [Fragment] subclass.
  */
-class ListFragment : Fragment() {//, ProfileRecyclerViewAdapter.onListInteraction {
+class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
 
     val users = mutableListOf<ProfileModel>()
     private var adapter: ProfileRecyclerViewAdapter? = null
-    var count: Int = 3
+    var count: Int = 0
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,15 +36,13 @@ class ListFragment : Fragment() {//, ProfileRecyclerViewAdapter.onListInteractio
         for (i in 1..20) {
             users.add(
                 ProfileModel(
-                    "mr",
                     "brad",
-                    "gibson",
-                    "brad.gibson@example.com",
-                    "011-962-7516"
+                    "gibson"
                 )
             )
+            count++
         }
-        adapter = ProfileRecyclerViewAdapter(users)
+        adapter = ProfileRecyclerViewAdapter(users, this)
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
         //view.floatingActionButton.setOnClickListener() {
@@ -51,13 +53,20 @@ class ListFragment : Fragment() {//, ProfileRecyclerViewAdapter.onListInteractio
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+    }
+
     //override fun onListButtonInteraction(item: ProfileModel?) {
     //    users.remove(item)
     //    adapter!!.updateData()
     //}
 
-    //override fun onListItemInteraction(item: ProfileModel?) {
-    //    Log.d("John", "HOLA! "+item?.title)
-    //}
+    override fun onListItemInteraction(item: ProfileModel?) {
+        Log.d("John", "HOLA! ")
+        val bundle = bundleOf("data" to item)
+        navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)
+    }
 
 }

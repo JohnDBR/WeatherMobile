@@ -10,7 +10,9 @@ import com.example.classvideos.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item.view.*
 
 class ProfileRecyclerViewAdapter(
-    private val mValues: List<ProfileModel>) : RecyclerView.Adapter<ProfileRecyclerViewAdapter.ViewHolder>() {
+    private val mValues: List<ProfileModel>,
+    private val mListener: onListInteraction
+    ) : RecyclerView.Adapter<ProfileRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,15 +25,12 @@ class ProfileRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ProfileRecyclerViewAdapter.ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.tTitle.text = item.title
         holder.tFirstName.text = item.first_name
         holder.tLastName.text = item.last_name
-        holder.tEmail.text = item.email
-        holder.tPhone.text = item.phone
 
-        //holder.mView.setOnClickListener({
-        //    mListener?.onListItemInteraction(item)
-        //})
+        holder.mView.setOnClickListener({
+            mListener?.onListItemInteraction(item)
+        })
 
         //holder.button.setOnClickListener({
         //    mListener?.onListButtonInteraction(item)
@@ -44,15 +43,12 @@ class ProfileRecyclerViewAdapter(
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         //val button: Button = mView.bDeleteUser
-        val tTitle: TextView = mView.title
         val tFirstName: TextView = mView.first_name
         val tLastName: TextView = mView.last_name
-        val tEmail: TextView = mView.email
-        val tPhone: TextView = mView.phone
     }
 
-    //interface onListInteraction {
-    //    fun onListItemInteraction(item: ProfileModel?)
+    interface onListInteraction {
+        fun onListItemInteraction(item: ProfileModel?)
     //    fun onListButtonInteraction(item: ProfileModel?)
-    //}
+    }
 }
