@@ -8,19 +8,39 @@ import com.example.bonus.R
 
 class GlideBinding {
 
-    @BindingAdapter("imageResource")
-    fun setImageResource(view: ImageView, imageUrl: Int) { //String
+    companion object {
+        @JvmStatic
+        @BindingAdapter("imageResource")
+        fun setImageResource(view: ImageView, imageUrl: Int) { //String
 
-        val context = view.getContext()
+            val context = view.getContext()
 
-        val option = RequestOptions()
-            .placeholder(R.drawable.banana)
-            .error(R.drawable.banana)
+            val option = RequestOptions()
+                .placeholder(R.drawable.banana)
+                .error(R.drawable.banana)
 
-        Glide.with(context)
-            .setDefaultRequestOptions(option)
-            .load(imageUrl)
-            .into(view)
+            Glide.with(context)
+                .setDefaultRequestOptions(option)
+                .load(imageUrl)
+                .into(view)
 
+        }
+
+        @JvmStatic
+        @BindingAdapter("imageResourceUrl")
+        fun setImageResourceUrl(view: ImageView, imageUrl: String) { //String
+
+            val context = view.getContext()
+
+            val option = RequestOptions()
+                .placeholder(R.drawable.banana)
+                .error(R.drawable.banana)
+
+            Glide.with(context)
+                .setDefaultRequestOptions(option)
+                .load(imageUrl)
+                .into(view)
+
+        }
     }
 }
