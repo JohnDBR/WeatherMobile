@@ -51,10 +51,11 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         //    )
         //    count++
         //}
-        VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
+
         adapter = ProfileRecyclerViewAdapter(users, this)
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
+        VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
         //    users.add(ProfileModel("User "+count, "Profesor de Movil", R.drawable.banana))
         //    count++
@@ -81,7 +82,7 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
 
     fun getJsonObjectRequest() : JsonObjectRequest {
 
-        val url =  "https://randomuser.me/api/?results=5"
+        val url =  "https://randomuser.me/api/?results=20"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -101,7 +102,9 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         var list = RandomUser.getUser(response)
         for (element in list) {
             Log.d("WebJson", "parseObjectG " + element.name?.first)
+            users.add(ProfileModel(element.name!!.first.toString(),element.name!!.last.toString(),R.drawable.banana,"https://randomuser.me/api/portraits/thumb/men/70.jpg"))
         }
+        adapter!!.notifyDataSetChanged()
     }
 
 }
