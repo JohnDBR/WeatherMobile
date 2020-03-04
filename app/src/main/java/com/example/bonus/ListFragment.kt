@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ import com.example.bonus.ProfileRecyclerViewAdapter
 import com.example.bonus.R
 import com.example.bonus.databinding.FragmentItemListBinding
 import com.example.bonus.models.RandomUser
+import com.example.bonus.models.RandomUserViewModel
 import com.example.bonus.models.VolleySingleton
 
 import com.example.classvideos.models.ProfileModel
@@ -31,11 +34,14 @@ import org.json.JSONObject
  */
 class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
 
-    val users = mutableListOf<ProfileModel>()
+    val usersProfileModel = mutableListOf<ProfileModel>()
     private var adapter: ProfileRecyclerViewAdapter? = null
     var count: Int = 0
     lateinit var navController: NavController
     lateinit var mBinding: FragmentItemListBinding
+
+    lateinit var viewModel : RandomUserViewModel
+    private var userList = mutableListOf<RandomUser>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,10 +63,32 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         //    count++
         //}
 
-        adapter = ProfileRecyclerViewAdapter(users, this)
+        viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
+        viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
+            run {
+                userList = users as MutableList<RandomUser> // We should be binding RandomUser class not ProfileModel anymore!
+                Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
+                for (element in users) {
+                     Log.d("WebJson", "View model observer is being executed!")
+                    usersProfileModel.add(
+                         ProfileModel(
+                             element.name!!.first.toString(),
+                             element.name!!.last.toString(),
+                             R.drawable.banana,element.picture!!.large.toString(),
+                             element.email.toString(),
+                             element.phone.toString()
+                         )
+                    )
+                }
+                adapter!!.notifyDataSetChanged()
+            }
+        })
+
+        adapter = ProfileRecyclerViewAdapter(usersProfileModel, this)
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
-        VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
+        viewModel.addUser()
+        //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
         //    users.add(ProfileModel("User "+count, "Profesor de Movil", R.drawable.banana))
         //    count++
@@ -83,33 +111,6 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         Log.d("John", "HOLA! ")
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)
-    }
-
-    fun getJsonObjectRequest() : JsonObjectRequest {
-
-        val url =  "https://randomuser.me/api/?results=20"
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener { response ->
-                //parseObject(response)
-                parseObjectG(response)
-            },
-            Response.ErrorListener{
-                Log.d("WebJson", "ERROR")
-
-            }
-        )
-        return jsonObjectRequest
-    }
-
-    fun parseObjectG(response: JSONObject) {
-        var list = RandomUser.getUser(response)
-        for (element in list) {
-            Log.d("WebJson", "parseObjectG " + element.name?.first)
-            users.add(ProfileModel(element.name!!.first.toString(),element.name!!.last.toString(),R.drawable.banana,element.picture!!.large.toString(),element.email.toString(),element.phone.toString()))
-        }
-        adapter!!.notifyDataSetChanged()
     }
 
 }
