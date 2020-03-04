@@ -11,11 +11,18 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.bonus.ProfileRecyclerViewAdapter
 import com.example.bonus.R
+import com.example.bonus.models.RandomUser
+import com.example.bonus.models.VolleySingleton
 
 import com.example.classvideos.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item_list.view.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 /**
  * A simple [Fragment] subclass.
@@ -33,17 +40,18 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_item_list, container, false)
-        for (i in 1..20) {
-            users.add(
-                ProfileModel(
-                    "brad",
-                    "gibson",
-                    R.drawable.banana,
-                    "https://randomuser.me/api/portraits/med/men/75.jpg"
-                )
-            )
-            count++
-        }
+        //for (i in 1..20) {
+        //    users.add(
+        //        ProfileModel(
+        //            "brad",
+        //            "gibson",
+        //            R.drawable.banana,
+        //            "https://randomuser.me/api/portraits/med/men/75.jpg"
+        //        )
+        //    )
+        //    count++
+        //}
+        VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         adapter = ProfileRecyclerViewAdapter(users, this)
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
@@ -69,6 +77,31 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         Log.d("John", "HOLA! ")
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)
+    }
+
+    fun getJsonObjectRequest() : JsonObjectRequest {
+
+        val url =  "https://randomuser.me/api/?results=5"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                //parseObject(response)
+                parseObjectG(response)
+            },
+            Response.ErrorListener{
+                Log.d("WebJson", "ERROR")
+
+            }
+        )
+        return jsonObjectRequest
+    }
+
+    fun parseObjectG(response: JSONObject) {
+        var list = RandomUser.getUser(response)
+        for (element in list) {
+            Log.d("WebJson", "parseObjectG " + element.name?.first)
+        }
     }
 
 }
