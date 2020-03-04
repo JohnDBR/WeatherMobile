@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.bonus.ProfileRecyclerViewAdapter
 import com.example.bonus.R
+import com.example.bonus.databinding.FragmentItemListBinding
 import com.example.bonus.models.RandomUser
 import com.example.bonus.models.VolleySingleton
 
@@ -33,13 +35,16 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
     private var adapter: ProfileRecyclerViewAdapter? = null
     var count: Int = 0
     lateinit var navController: NavController
+    lateinit var mBinding: FragmentItemListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        // val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_list, container, false)
+        val view = mBinding.root
         //for (i in 1..20) {
         //    users.add(
         //        ProfileModel(

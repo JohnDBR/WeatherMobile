@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import com.example.bonus.R
+import com.example.bonus.databinding.FragmentDetailBinding
+import com.example.bonus.databinding.FragmentItemBinding
 import com.example.classvideos.models.ProfileModel
 
 /**
@@ -16,6 +19,7 @@ import com.example.classvideos.models.ProfileModel
 class ItemFragment : Fragment() {//, View.OnClickListener {
 
     lateinit var profileModel: ProfileModel
+    lateinit var mBinding: FragmentItemBinding
     //lateinit var navController: NavController
 
     override fun onCreateView(
@@ -23,7 +27,9 @@ class ItemFragment : Fragment() {//, View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item, container, false)
+        // return inflater.inflate(R.layout.fragment_item, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item, container, false)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
