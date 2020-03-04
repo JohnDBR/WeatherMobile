@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="user"
             type="com.example.classvideos.models.ProfileModel" />
     </data>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="@dimen/text_margin">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="@dimen/text_margin">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/first_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{user.first_name}" />
 
                 <TextView
                     android:id="@+id/last_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{user.last_name}" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.phone}"
+                    />.
+
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

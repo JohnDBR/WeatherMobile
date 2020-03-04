@@ -102,7 +102,7 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         var list = RandomUser.getUser(response)
         for (element in list) {
             Log.d("WebJson", "parseObjectG " + element.name?.first)
-            users.add(ProfileModel(element.name!!.first.toString(),element.name!!.last.toString(),R.drawable.banana,"https://randomuser.me/api/portraits/thumb/men/70.jpg"))
+            users.add(ProfileModel(element.name!!.first.toString(),element.name!!.last.toString(),R.drawable.banana,element.picture!!.large.toString(),element.email.toString(),element.phone.toString()))
         }
         adapter!!.notifyDataSetChanged()
     }

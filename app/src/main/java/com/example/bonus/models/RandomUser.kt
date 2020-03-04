@@ -8,6 +8,10 @@ import java.util.*
 class RandomUser {
     var gender: String? = null
     var name: Name? = null
+    var email : String? = null
+    var picture : Picture? = null
+    var phone : String? = null
+
 
     // There are some missing classes...
 
@@ -15,6 +19,13 @@ class RandomUser {
         var title: String? = null
         var first: String? = null
         var last: String? = null
+        override fun toString(): String {
+            return g.toJson(this)
+        }
+    }
+
+    class  Picture{
+        var large : String? =null
         override fun toString(): String {
             return g.toJson(this)
         }
