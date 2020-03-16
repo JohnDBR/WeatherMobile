@@ -1,4 +1,4 @@
-package com.example.classvideos
+package com.example.bonus
 
 
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import com.example.bonus.R
 import com.example.bonus.databinding.FragmentDetailBinding
 import com.example.bonus.databinding.FragmentItemBinding
-import com.example.classvideos.models.ProfileModel
+import com.example.bonus.models.ProfileModel
 
 /**
  * A simple [Fragment] subclass.

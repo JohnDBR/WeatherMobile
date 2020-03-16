@@ -7,7 +7,7 @@
     <data>
         <variable
             name="user"
-            type="com.example.classvideos.models.ProfileModel" />
+            type="com.example.bonus.models.ProfileModel" />
     </data>
 
     <FrameLayout

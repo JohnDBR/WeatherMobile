@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bonus.databinding.FragmentItemBinding
-import com.example.classvideos.models.ProfileModel
+import com.example.bonus.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item.view.*
 
 class ProfileRecyclerViewAdapter(

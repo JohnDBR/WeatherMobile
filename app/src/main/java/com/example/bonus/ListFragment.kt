@@ -1,4 +1,4 @@
-package com.example.classvideos
+package com.example.bonus
 
 
 import android.os.Bundle
@@ -24,7 +24,7 @@ import com.example.bonus.models.RandomUser
 import com.example.bonus.models.RandomUserViewModel
 import com.example.bonus.models.VolleySingleton
 
-import com.example.classvideos.models.ProfileModel
+import com.example.bonus.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item_list.view.*
 import org.json.JSONArray
 import org.json.JSONObject

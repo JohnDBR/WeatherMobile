@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.bonus.databinding.FragmentDetailBinding
-import com.example.classvideos.models.ProfileModel
+import com.example.bonus.models.ProfileModel
 
 /**
  * A simple [Fragment] subclass.

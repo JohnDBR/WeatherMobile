@@ -3,7 +3,7 @@
     <data>
         <variable
             name="user"
-            type="com.example.classvideos.models.ProfileModel" />
+            type="com.example.bonus.models.ProfileModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

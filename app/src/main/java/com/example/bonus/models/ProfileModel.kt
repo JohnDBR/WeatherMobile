@@ -1,4 +1,4 @@
-package com.example.classvideos.models
+package com.example.bonus.models
 
 import android.os.Parcelable
 import com.example.bonus.models.RandomUser

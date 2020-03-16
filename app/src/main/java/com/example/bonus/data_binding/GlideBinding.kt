@@ -1,4 +1,4 @@
-package com.example.classvideos.data_binding
+package com.example.bonus.data_binding
 
 import com.bumptech.glide.Glide
 import android.widget.ImageView

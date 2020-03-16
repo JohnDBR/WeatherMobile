@@ -8,7 +8,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.bonus.R
-import com.example.classvideos.models.ProfileModel
+import com.example.bonus.models.ProfileModel
 import org.json.JSONObject
 
 class RandomUserDao private constructor(var context: Context) {
