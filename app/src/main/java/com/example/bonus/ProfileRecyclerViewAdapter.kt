@@ -1,5 +1,6 @@
 package com.example.bonus
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,7 @@ class ProfileRecyclerViewAdapter(
     ): ProfileRecyclerViewAdapter.ViewHolder {
         //val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_item, parent, false)
         //return ViewHolder(view)
-        var binder: FragmentItemBinding
-        binder = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_item, parent, false)
+        val binder: FragmentItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_item, parent, false)
         return ViewHolder(binder)
     }
 
@@ -32,10 +32,9 @@ class ProfileRecyclerViewAdapter(
         val item = mValues[position]
         //holder.tFirstName.text = item.first_name
         //holder.tLastName.text = item.last_name
-
-        holder.mView.card.setOnClickListener({
+        holder.mView.card.setOnClickListener {
             mListener?.onListItemInteraction(item)
-        })
+        }
 
         //holder.button.setOnClickListener({
         //    mListener?.onListButtonInteraction(item)

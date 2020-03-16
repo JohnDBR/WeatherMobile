@@ -14,20 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.example.bonus.ProfileRecyclerViewAdapter
-import com.example.bonus.R
 import com.example.bonus.databinding.FragmentItemListBinding
-import com.example.bonus.models.RandomUser
 import com.example.bonus.models.RandomUserViewModel
-import com.example.bonus.models.VolleySingleton
 
 import com.example.bonus.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item_list.view.*
-import org.json.JSONArray
-import org.json.JSONObject
 
 /**
  * A simple [Fragment] subclass.
@@ -41,7 +32,7 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
     lateinit var mBinding: FragmentItemListBinding
 
     lateinit var viewModel : RandomUserViewModel
-    private var userList = mutableListOf<RandomUser>()
+    //private var userList = mutableListOf<ProfileModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,25 +57,36 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
         viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
             run {
-                userList = users as MutableList<RandomUser> // We should be binding RandomUser class not ProfileModel anymore!
-                Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
+                //userList = users as MutableList<ProfileModel> // We should be binding RandomUser class not ProfileModel anymore!
+                //Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
+                //for (element in users) {
+                //     Log.d("WebJson", "View model observer is being executed!")
+                //    usersProfileModel.add(
+                //         ProfileModel(
+                //             element.name!!.first.toString(),
+                //             element.name!!.last.toString(),
+                //             R.drawable.banana,element.picture!!.large.toString(),
+                //             element.email.toString(),
+                //             element.phone.toString()
+                //         )
+                //    )
+                //}
+                Log.d("PRVA",  "3")
+                //usersProfileModel = users as MutableList<ProfileModel>
+                usersProfileModel.clear()
                 for (element in users) {
-                     Log.d("WebJson", "View model observer is being executed!")
-                    usersProfileModel.add(
-                         ProfileModel(
-                             element.name!!.first.toString(),
-                             element.name!!.last.toString(),
-                             R.drawable.banana,element.picture!!.large.toString(),
-                             element.email.toString(),
-                             element.phone.toString()
-                         )
-                    )
+                    usersProfileModel.add(element)
                 }
+                Log.d("PRVA",  "usersProfileModel.size = "+usersProfileModel.size)
                 adapter!!.notifyDataSetChanged()
             }
         })
-
+        Log.d("PRVA",  "4")
         adapter = ProfileRecyclerViewAdapter(usersProfileModel, this)
+        //for (element in usersProfileModel) {
+        //    Log.d("PRVA",  "element "+element.name?.first)
+        //}
+        adapter!!.notifyDataSetChanged()
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
         viewModel.addUser()

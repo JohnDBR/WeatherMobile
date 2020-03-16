@@ -26,22 +26,20 @@
                     android:id="@+id/first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.first_name}" />
+                    android:text="@{user.name.first}" />
 
                 <TextView
                     android:id="@+id/last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.last_name}" />
+                    android:text="@{user.name.last}" />
 
                 <TextView
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{user.phone}"
-                    />.
-
-
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

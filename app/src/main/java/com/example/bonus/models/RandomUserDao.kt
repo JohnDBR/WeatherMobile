@@ -4,22 +4,15 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.android.volley.Request
-import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.bonus.R
-import com.example.bonus.models.ProfileModel
 import org.json.JSONObject
 
 class RandomUserDao private constructor(var context: Context) {
 
-    private val userList = mutableListOf<RandomUser>()
-    private val users = MutableLiveData<List<RandomUser>>()
-    private var queue : RequestQueue
-
-    init {
-        queue = VolleySingleton.getInstance(context).requestQueue
-    }
+    //private val userList = mutableListOf<ProfileModel>()
+    private val users = MutableLiveData<List<ProfileModel>>()
+    //private var queue : RequestQueue = VolleySingleton.getInstance(context).requestQueue
 
     companion object {
         @Volatile
@@ -34,7 +27,7 @@ class RandomUserDao private constructor(var context: Context) {
         VolleySingleton.getInstance(context).addToRequestQueue(getJsonObjectRequest())
     }
 
-    fun getUsers() : MutableLiveData<List<RandomUser>> {
+    fun getUsers() : MutableLiveData<List<ProfileModel>> {
         return users;
     }
 
@@ -42,7 +35,7 @@ class RandomUserDao private constructor(var context: Context) {
 
         val url =  "https://randomuser.me/api/?results=20"
 
-        val jsonObjectRequest = JsonObjectRequest(
+        return JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 //parseObject(response)
@@ -50,19 +43,17 @@ class RandomUserDao private constructor(var context: Context) {
             },
             Response.ErrorListener{
                 Log.d("WebJson", "ERROR")
-
             }
         )
-        return jsonObjectRequest
     }
 
     fun parseObjectG(response: JSONObject) {
-        var list = RandomUser.getUser(response)
-        for (element in list) {
-            Log.d("VideoVolleyLiveData",  "element "+element.name?.first)
-            userList.add(element)
-        }
-        users.value = userList
+        //var list = ProfileModel.getUser(response)
+        //for (element in list) {
+        //    Log.d("VideoVolleyLiveData",  "element "+element.name?.first)
+        //    userList.add(element)
+        //}
+        users.value = ProfileModel.getUser(response) //userList
         // for (element in list) {
         //     Log.d("WebJson", "parseObjectG " + element.name?.first)
         //     users.add(
