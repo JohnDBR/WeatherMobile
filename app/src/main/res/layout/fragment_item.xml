@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="user"
+            name="City"
             type="com.example.classvideos.models.ProfileModel" />
     </data>
     <LinearLayout
@@ -26,20 +26,9 @@
                     android:id="@+id/first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.first_name}" />
+                    android:text="@{City.name}" />
 
-                <TextView
-                    android:id="@+id/last_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{user.last_name}" />
 
-                <TextView
-                    android:id="@+id/phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{user.phone}"
-                    />.
 
 
 

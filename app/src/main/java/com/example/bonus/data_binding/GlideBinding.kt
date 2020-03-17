@@ -6,6 +6,7 @@ import com.bumptech.glide.request.RequestOptions
 import androidx.databinding.BindingAdapter
 import com.example.bonus.R
 
+
 class GlideBinding {
 
     companion object {

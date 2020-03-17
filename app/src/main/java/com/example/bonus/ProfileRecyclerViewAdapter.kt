@@ -41,7 +41,7 @@ class ProfileRecyclerViewAdapter(
         //    mListener?.onListButtonInteraction(item)
         //})
 
-        holder.mView.user = item
+        holder.mView.city = item
         holder.mView.executePendingBindings()
     }
 

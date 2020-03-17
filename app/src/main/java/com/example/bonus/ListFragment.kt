@@ -14,20 +14,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.example.bonus.ProfileRecyclerViewAdapter
 import com.example.bonus.R
 import com.example.bonus.databinding.FragmentItemListBinding
-import com.example.bonus.models.RandomUser
-import com.example.bonus.models.RandomUserViewModel
-import com.example.bonus.models.VolleySingleton
+import com.example.bonus.models.GetFirstWeather
+import com.example.bonus.models.CityViewModel
 
 import com.example.classvideos.models.ProfileModel
 import kotlinx.android.synthetic.main.fragment_item_list.view.*
-import org.json.JSONArray
-import org.json.JSONObject
 
 /**
  * A simple [Fragment] subclass.
@@ -40,8 +34,8 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
     lateinit var navController: NavController
     lateinit var mBinding: FragmentItemListBinding
 
-    lateinit var viewModel : RandomUserViewModel
-    private var userList = mutableListOf<RandomUser>()
+    lateinit var viewModel : CityViewModel
+    private var userList = mutableListOf<GetFirstWeather>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,20 +57,18 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         //    count++
         //}
 
-        viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CityViewModel::class.java)
         viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
             run {
-                userList = users as MutableList<RandomUser> // We should be binding RandomUser class not ProfileModel anymore!
+                userList = users as MutableList<GetFirstWeather> // We should be binding RandomUser class not ProfileModel anymore!
                 Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
                 for (element in users) {
                      Log.d("WebJson", "View model observer is being executed!")
                     usersProfileModel.add(
                          ProfileModel(
-                             element.name!!.first.toString(),
-                             element.name!!.last.toString(),
-                             R.drawable.banana,element.picture!!.large.toString(),
-                             element.email.toString(),
-                             element.phone.toString()
+                             element.name!!.toString(),
+                             R.drawable.banana,element.picture!!.large.toString()
+
                          )
                     )
                 }

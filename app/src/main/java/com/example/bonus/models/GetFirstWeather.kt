@@ -5,20 +5,20 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class RandomUser {
-    var gender: String? = null
-    var name: Name? = null
-    var email : String? = null
+class GetFirstWeather {
+
+    var name: String? = null
     var picture : Picture? = null
-    var phone : String? = null
+    var feels_like : main? = null
+    var temp : main? = null
+
 
 
     // There are some missing classes...
 
-    class Name {
-        var title: String? = null
-        var first: String? = null
-        var last: String? = null
+    class main {
+        var temp: String? = null
+        var feels_like: String? = null
         override fun toString(): String {
             return g.toJson(this)
         }
@@ -34,15 +34,15 @@ class RandomUser {
     // ArrayList of RandomUser elements
     companion object {
         var g = Gson()
-        fun getUser(response: JSONObject): ArrayList<RandomUser> {
-            val list = ArrayList<RandomUser>()
+        fun getCity(response: JSONObject): ArrayList<GetFirstWeather> {
+            val list = ArrayList<GetFirstWeather>()
             try {
                 val info = response.getJSONArray("results")
                 for (i in 0 until info.length()) {
-                    val persona = info.getJSONObject(i).toString()
-                    val temp =
-                        g.fromJson(persona, RandomUser::class.java)
-                    list.add(temp)
+                    val ciudad = info.getJSONObject(i).toString()
+                    val tempo =
+                        g.fromJson(ciudad, GetFirstWeather::class.java)
+                    list.add(tempo)
                 }
             } catch (e: JSONException) {
                 e.printStackTrace()

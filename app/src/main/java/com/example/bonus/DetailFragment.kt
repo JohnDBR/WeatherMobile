@@ -36,7 +36,7 @@ class DetailFragment : Fragment() { //, View.OnClickListener {
         navController = Navigation.findNavController(view)
         profileModel = arguments!!.getParcelable("data")!!
         // mBinding = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_detail)
-        mBinding.user = profileModel
+        mBinding.city = profileModel
         //view.findViewById<Button>(R.id.bPlaces1).setOnClickListener(this)
 
         // This is not neccesary because we are using binding!

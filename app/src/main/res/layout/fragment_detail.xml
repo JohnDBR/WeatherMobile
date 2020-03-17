@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="user"
+            name="City"
             type="com.example.classvideos.models.ProfileModel" />
     </data>
 
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
-                android:text="@{user.first_name}"
+                android:text="@{City.name}"
                 android:textSize="20sp"
                 android:textStyle="bold"></TextView>
 
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/banana"
-                app:imageResourceUrl="@{user.photoUrl}"
+                app:imageResourceUrl="@{City.photoUrl}"
                 android:layout_marginBottom="30dp"/>
 
         </LinearLayout>
