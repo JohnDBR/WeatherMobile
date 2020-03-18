@@ -11,7 +11,7 @@ import org.json.JSONObject
 class CityCurrentWeatherDao private constructor(var context: Context) {
 
     //private val userList = mutableListOf<CityCurrentWeatherModel>()
-    private val users = MutableLiveData<List<CityCurrentWeatherModel>>()
+    private val cities = MutableLiveData<List<CityCurrentWeatherModel>>()
     //private var queue : RequestQueue = VolleySingleton.getInstance(context).requestQueue
 
     companion object {
@@ -23,12 +23,12 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
             }
     }
 
-    fun addUser(city : String = "Barranquilla") {
+    fun addCity(city : String = "Barranquilla") {
         VolleySingleton.getInstance(context).addToRequestQueue(getJsonObjectRequest(city))
     }
 
-    fun getUsers() : MutableLiveData<List<CityCurrentWeatherModel>> {
-        return users;
+    fun getCities() : MutableLiveData<List<CityCurrentWeatherModel>> {
+        return cities;
     }
 
     fun getJsonObjectRequest(city : String = "Barranquilla") : JsonObjectRequest {
@@ -57,15 +57,15 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
         //    userList.add(element)
         //}
         //users.value = CityCurrentWeatherModel.getUser(response) //userList
-        CityCurrentWeatherModel.getUser(response)?.let {
+        CityCurrentWeatherModel.getCity(response)?.let {
             val cityList = mutableListOf<CityCurrentWeatherModel>()
-            if (users.value != null) {
-                cityList.addAll(users.value!!)
+            if (cities.value != null) {
+                cityList.addAll(cities.value!!)
             }
             cityList.add(it)
             //val weatherList = it.weather
             Log.d("VideoVolleyLiveData",  "element "+it.weather.get(0).id)
-            users.value = cityList
+            cities.value = cityList
         }
         // for (element in list) {
         //     Log.d("WebJson", "parseObjectG " + element.name?.first)

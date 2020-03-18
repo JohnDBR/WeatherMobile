@@ -7,29 +7,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bonus.databinding.FragmentCityCurrentWeatherItemBinding
 import com.example.bonus.models.CityCurrentWeatherModel
 
-class CityCurrentWeatherRecyclerViewAdapter(
+class CityForecastWeatherRecyclerViewAdapter(
     private val mValues: List<CityCurrentWeatherModel>,
     private val mListener: onListInteraction
-    ) : RecyclerView.Adapter<CityCurrentWeatherRecyclerViewAdapter.ViewHolder>() {
+    ) : RecyclerView.Adapter<CityForecastWeatherRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CityCurrentWeatherRecyclerViewAdapter.ViewHolder {
-        //val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_city_current_weather_item, parent, false)
-        //return ViewHolder(view)
+    ): CityForecastWeatherRecyclerViewAdapter.ViewHolder {
         val binder: FragmentCityCurrentWeatherItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_city_current_weather_item, parent, false)
         return ViewHolder(binder)
     }
 
     override fun getItemCount(): Int = mValues.size
 
-    override fun onBindViewHolder(holder: CityCurrentWeatherRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CityForecastWeatherRecyclerViewAdapter.ViewHolder, position: Int) {
         val item = mValues[position]
-        //holder.tFirstName.text = item.first_name
-        //holder.tLastName.text = item.last_name
-        holder.mView.card.setOnClickListener {
-            mListener?.onListItemInteraction(item)
-        }
+
+        //holder.mView.card.setOnClickListener {
+        //    mListener?.onListItemInteraction(item)
+        //}
 
         //holder.button.setOnClickListener({
         //    mListener?.onListButtonInteraction(item)

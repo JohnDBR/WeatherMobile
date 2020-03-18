@@ -55,7 +55,7 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
         //}
 
         viewModel = ViewModelProvider(this).get(CityCurrentWeatherViewModel::class.java)
-        viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
+        viewModel.getCities().observe(viewLifecycleOwner, Observer { cities ->
             run {
                 //userList = users as MutableList<CityCurrentWeatherModel> // We should be binding RandomUser class not CityCurrentWeatherModel anymore!
                 //Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
@@ -74,10 +74,10 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
                 Log.d("PRVA",  "3")
                 //usersProfileModel = users as MutableList<CityCurrentWeatherModel>
                 cityCurrentWeatherModel.clear()
-                for (element in users) {
+                for (element in cities) {
                     cityCurrentWeatherModel.add(element)
                 }
-                Log.d("PRVA",  "usersProfileModel.size = "+cityCurrentWeatherModel.size)
+                Log.d("PRVA",  "citiesProfileModel.size = "+cityCurrentWeatherModel.size)
                 adapter!!.notifyDataSetChanged()
             }
         })
@@ -89,16 +89,16 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
         adapter!!.notifyDataSetChanged()
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
-        viewModel.addUser("Bogota")
-        viewModel.addUser("Medellin")
-        viewModel.addUser("Cali")
-        viewModel.addUser("Barranquilla")
-        viewModel.addUser("Cartagena")
-        viewModel.addUser("Soacha")
-        viewModel.addUser("Cucuta")
-        viewModel.addUser("Soledad")
-        viewModel.addUser("Bucaramanga")
-        viewModel.addUser("Ibague")
+        viewModel.addCity("Bogota")
+        viewModel.addCity("Medellin")
+        viewModel.addCity("Cali")
+        viewModel.addCity("Barranquilla")
+        viewModel.addCity("Cartagena")
+        viewModel.addCity("Soacha")
+        viewModel.addCity("Cucuta")
+        viewModel.addCity("Soledad")
+        viewModel.addCity("Bucaramanga")
+        viewModel.addCity("Ibague")
         //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
         //    users.add(CityCurrentWeatherModel("User "+count, "Profesor de Movil", R.drawable.banana))

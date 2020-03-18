@@ -36,7 +36,7 @@ class CityForecastWeatherListFragment : Fragment() { //, View.OnClickListener {
         navController = Navigation.findNavController(view)
         cityCurrentWeatherModel = arguments!!.getParcelable("data")!!
         // mBinding = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_city_forecast_weather_list)
-        mBinding.user = cityCurrentWeatherModel
+        mBinding.city = cityCurrentWeatherModel
         //view.findViewById<Button>(R.id.bPlaces1).setOnClickListener(this)
 
         // This is not neccesary because we are using binding!

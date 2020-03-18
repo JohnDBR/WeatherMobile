@@ -95,7 +95,7 @@ class CityCurrentWeatherModel(
     // Single RandomUser element
     companion object {
         var g = Gson()
-        fun getUser(response: JSONObject): CityCurrentWeatherModel? {//ArrayList<CityCurrentWeatherModel> {
+        fun getCity(response: JSONObject): CityCurrentWeatherModel? {//ArrayList<CityCurrentWeatherModel> {
             //val list = ArrayList<CityCurrentWeatherModel>()
             var element : CityCurrentWeatherModel? = null
             try {

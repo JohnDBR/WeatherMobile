@@ -12,11 +12,11 @@ class CityCurrentWeatherViewModel (application: Application) : AndroidViewModel(
             cityCurrentWeatherDao = CityCurrentWeatherDao.getInstance(this.getApplication())
         }
 
-        fun addUser(city : String = "Barranquilla"){
-            cityCurrentWeatherDao.addUser(city)
+        fun addCity(city : String = "Barranquilla"){
+            cityCurrentWeatherDao.addCity(city)
         }
 
-        fun getUsers() : MutableLiveData<List<CityCurrentWeatherModel>> {
-            return cityCurrentWeatherDao.getUsers();
+        fun getCities() : MutableLiveData<List<CityCurrentWeatherModel>> {
+            return cityCurrentWeatherDao.getCities();
         }
 }
