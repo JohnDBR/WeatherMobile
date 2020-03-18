@@ -40,7 +40,7 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 //parseObject(response)
-                parseObjectG(response)
+                parseObjectG(response, city)
             },
             Response.ErrorListener{
                 Log.d("WebJson", "ERROR")
@@ -50,7 +50,7 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
         )
     }
 
-    fun parseObjectG(response: JSONObject) {
+    fun parseObjectG(response: JSONObject, city: String) {
         //var list = CityCurrentWeatherModel.getUser(response)
         //for (element in list) {
         //    Log.d("VideoVolleyLiveData",  "element "+element.name?.first)
@@ -62,6 +62,7 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
             if (cities.value != null) {
                 cityList.addAll(cities.value!!)
             }
+            it.hard_name = city
             cityList.add(it)
             //val weatherList = it.weather
             Log.d("VideoVolleyLiveData",  "element "+it.weather.get(0).id)

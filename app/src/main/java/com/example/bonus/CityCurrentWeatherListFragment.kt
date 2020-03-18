@@ -86,9 +86,21 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
         //for (element in usersProfileModel) {
         //    Log.d("PRVA",  "element "+element.name?.first)
         //}
+        view.cities_list.layoutManager = LinearLayoutManager(context)
+        view.cities_list.adapter = adapter
+        loadData()
+        //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
+        //view.floatingActionButton.setOnClickListener() {
+        //    users.add(CityCurrentWeatherModel("User "+count, "Profesor de Movil", R.drawable.banana))
+        //    count++
+        //    adapter!!.updateData()
+        //}
+        return view
+    }
+
+    fun loadData() {
+        cityCurrentWeatherModel.clear()
         adapter!!.notifyDataSetChanged()
-        view.list.layoutManager = LinearLayoutManager(context)
-        view.list.adapter = adapter
         viewModel.addCity("Bogota")
         viewModel.addCity("Medellin")
         viewModel.addCity("Cali")
@@ -99,13 +111,6 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
         viewModel.addCity("Soledad")
         viewModel.addCity("Bucaramanga")
         viewModel.addCity("Ibague")
-        //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
-        //view.floatingActionButton.setOnClickListener() {
-        //    users.add(CityCurrentWeatherModel("User "+count, "Profesor de Movil", R.drawable.banana))
-        //    count++
-        //    adapter!!.updateData()
-        //}
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

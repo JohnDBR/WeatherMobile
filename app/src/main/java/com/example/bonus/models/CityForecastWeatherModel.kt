@@ -8,32 +8,17 @@ import org.json.JSONException
 import org.json.JSONObject
 
 @Parcelize
-class CityCurrentWeatherModel(
-    var coord: Coordinate,
-    var weather : List<WheaterElement>,
-    var base : String,
+class CityForecastWeatherModel(
+    var dt : String,
     var main : Main,
+    var weather : List<WheaterElement>,
+    var clouds : Cloud,
     var visibility : String,
     var wind : Wind,
-    var clouds : Cloud,
-    var dt : String,
+    // var rain : Rain,
     var sys : Sys,
-    var timezone : String,
-    var id : String,
-    var name : String,
-    var cod : String,
-    var hard_name : String
+    var dt_txt : String
 ): Parcelable {
-
-    @Parcelize
-    class Coordinate(
-        var lon: String,
-        var lat: String
-    ): Parcelable {
-        override fun toString(): String {
-            return g.toJson(this)
-        }
-    }
 
     @Parcelize
     class WheaterElement(
@@ -54,7 +39,10 @@ class CityCurrentWeatherModel(
         var temp_min: String,
         var temp_max: String,
         var pressure: String,
-        var humidity: String
+        var sea_level: String,
+        var grnd_level: String,
+        var humidity: String,
+        var temp_kf: String
     ): Parcelable {
         override fun toString(): String {
             return g.toJson(this)
@@ -82,37 +70,38 @@ class CityCurrentWeatherModel(
 
     @Parcelize
     class Sys(
-        var type: String,
-        var id: String,
-        var country: String,
-        var sunrise: String,
-        var sunset: String
+        var pod: String
     ): Parcelable {
         override fun toString(): String {
             return g.toJson(this)
         }
     }
 
+    //@Parcelize
+    //class Rain(
+    //    var 3h: String
+    //): Parcelable {
+    //    override fun toString(): String {
+    //        return g.toJson(this)
+    //    }
+    //}
+
     // Single RandomUser element
     companion object {
         var g = Gson()
-        fun getCity(response: JSONObject): CityCurrentWeatherModel? {//ArrayList<CityCurrentWeatherModel> {
-            //val list = ArrayList<CityCurrentWeatherModel>()
-            var element : CityCurrentWeatherModel? = null
+        fun getCity(response: JSONObject): ArrayList<CityForecastWeatherModel> {
+            val list = ArrayList<CityForecastWeatherModel>()
             try {
-                //val info = response.getJSONArray("results")
-                //for (i in 0 until info.length()) {
-                    //val persona = info.getJSONObject(i).toString()
-                    //val temp =
-                        //g.fromJson(persona, CityCurrentWeatherModel::class.java)
-                    //list.add(temp)
-                //}
-                Log.d("VideoVolleyLiveData",  response.toString())
-                element = g.fromJson(response.toString(), CityCurrentWeatherModel::class.java)
+                val info = response.getJSONArray("list")
+                for (i in 0 until info.length()) {
+                    val city = info.getJSONObject(i).toString()
+                    val temp = g.fromJson(city, CityForecastWeatherModel::class.java)
+                    list.add(temp)
+                }
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
-            return element //list
+            return list
         }
     }
 
