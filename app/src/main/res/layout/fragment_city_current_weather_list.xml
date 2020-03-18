@@ -3,7 +3,7 @@
     <data>
         <variable
             name="user"
-            type="com.example.bonus.models.ProfileModel" />
+            type="com.example.bonus.models.CityCurrentWeatherModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +11,7 @@
         android:name="com.example.bonus.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ListFragment">
+        tools:context=".CityCurrentWeatherListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
@@ -21,8 +21,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context=".ListFragment"
-            tools:listitem="@layout/fragment_item" />
+            tools:context=".CityCurrentWeatherListFragment"
+            tools:listitem="@layout/fragment_city_current_weather_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

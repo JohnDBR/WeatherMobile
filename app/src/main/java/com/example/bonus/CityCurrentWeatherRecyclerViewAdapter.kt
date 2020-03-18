@@ -1,34 +1,29 @@
 package com.example.bonus
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bonus.databinding.FragmentItemBinding
-import com.example.bonus.models.ProfileModel
-import kotlinx.android.synthetic.main.fragment_item.view.*
+import com.example.bonus.databinding.FragmentCityCurrentWeatherItemBinding
+import com.example.bonus.models.CityCurrentWeatherModel
 
-class ProfileRecyclerViewAdapter(
-    private val mValues: List<ProfileModel>,
+class CityCurrentWeatherRecyclerViewAdapter(
+    private val mValues: List<CityCurrentWeatherModel>,
     private val mListener: onListInteraction
-    ) : RecyclerView.Adapter<ProfileRecyclerViewAdapter.ViewHolder>() {
+    ) : RecyclerView.Adapter<CityCurrentWeatherRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProfileRecyclerViewAdapter.ViewHolder {
-        //val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_item, parent, false)
+    ): CityCurrentWeatherRecyclerViewAdapter.ViewHolder {
+        //val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_city_current_weather_item, parent, false)
         //return ViewHolder(view)
-        val binder: FragmentItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_item, parent, false)
+        val binder: FragmentCityCurrentWeatherItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.fragment_city_current_weather_item, parent, false)
         return ViewHolder(binder)
     }
 
     override fun getItemCount(): Int = mValues.size
 
-    override fun onBindViewHolder(holder: ProfileRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CityCurrentWeatherRecyclerViewAdapter.ViewHolder, position: Int) {
         val item = mValues[position]
         //holder.tFirstName.text = item.first_name
         //holder.tLastName.text = item.last_name
@@ -48,14 +43,14 @@ class ProfileRecyclerViewAdapter(
     //    notifyDataSetChanged()
     //}
 
-    inner class ViewHolder(val mView: FragmentItemBinding) : RecyclerView.ViewHolder(mView.root) {
+    inner class ViewHolder(val mView: FragmentCityCurrentWeatherItemBinding) : RecyclerView.ViewHolder(mView.root) {
         //val button: Button = mView.bDeleteUser
         //val tFirstName: TextView = mView.first_name
         //val tLastName: TextView = mView.last_name
     }
 
     public interface onListInteraction {
-        fun onListItemInteraction(item: ProfileModel?)
-    //    fun onListButtonInteraction(item: ProfileModel?)
+        fun onListItemInteraction(item: CityCurrentWeatherModel?)
+    //    fun onListButtonInteraction(item: CityCurrentWeatherModel?)
     }
 }

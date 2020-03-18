@@ -6,7 +6,7 @@
     app:startDestination="@id/listFragment">
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.bonus.ListFragment"
+        android:name="com.example.bonus.CityCurrentWeatherListFragment"
         android:label="ListFragment" >
         <action
             android:id="@+id/action_listFragment_to_detailFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.bonus.DetailFragment"
+        android:name="com.example.bonus.CityForecastWeatherListFragment"
         android:label="DetailFragment" />
 </navigation>

@@ -14,37 +14,37 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bonus.databinding.FragmentItemListBinding
-import com.example.bonus.models.RandomUserViewModel
+import com.example.bonus.databinding.FragmentCityCurrentWeatherListBinding
+import com.example.bonus.models.CityCurrentWeatherViewModel
 
-import com.example.bonus.models.ProfileModel
-import kotlinx.android.synthetic.main.fragment_item_list.view.*
+import com.example.bonus.models.CityCurrentWeatherModel
+import kotlinx.android.synthetic.main.fragment_city_current_weather_list.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
+class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerViewAdapter.onListInteraction {
 
-    val usersProfileModel = mutableListOf<ProfileModel>()
-    private var adapter: ProfileRecyclerViewAdapter? = null
+    val cityCurrentWeatherModel = mutableListOf<CityCurrentWeatherModel>()
+    private var adapter: CityCurrentWeatherRecyclerViewAdapter? = null
     var count: Int = 0
     lateinit var navController: NavController
-    lateinit var mBinding: FragmentItemListBinding
+    lateinit var mBinding: FragmentCityCurrentWeatherListBinding
 
-    lateinit var viewModel : RandomUserViewModel
-    //private var userList = mutableListOf<ProfileModel>()
+    lateinit var viewModel : CityCurrentWeatherViewModel
+    //private var userList = mutableListOf<CityCurrentWeatherModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        // val view = inflater.inflate(R.layout.fragment_item_list, container, false)
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_list, container, false)
+        // val view = inflater.inflate(R.layout.fragment_city_current_weather_list, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_city_current_weather_list, container, false)
         val view = mBinding.root
         //for (i in 1..20) {
         //    users.add(
-        //        ProfileModel(
+        //        CityCurrentWeatherModel(
         //            "brad",
         //            "gibson",
         //            R.drawable.banana,
@@ -54,15 +54,15 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         //    count++
         //}
 
-        viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CityCurrentWeatherViewModel::class.java)
         viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
             run {
-                //userList = users as MutableList<ProfileModel> // We should be binding RandomUser class not ProfileModel anymore!
+                //userList = users as MutableList<CityCurrentWeatherModel> // We should be binding RandomUser class not CityCurrentWeatherModel anymore!
                 //Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
                 //for (element in users) {
                 //     Log.d("WebJson", "View model observer is being executed!")
                 //    usersProfileModel.add(
-                //         ProfileModel(
+                //         CityCurrentWeatherModel(
                 //             element.name!!.first.toString(),
                 //             element.name!!.last.toString(),
                 //             R.drawable.banana,element.picture!!.large.toString(),
@@ -72,17 +72,17 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
                 //    )
                 //}
                 Log.d("PRVA",  "3")
-                //usersProfileModel = users as MutableList<ProfileModel>
-                usersProfileModel.clear()
+                //usersProfileModel = users as MutableList<CityCurrentWeatherModel>
+                cityCurrentWeatherModel.clear()
                 for (element in users) {
-                    usersProfileModel.add(element)
+                    cityCurrentWeatherModel.add(element)
                 }
-                Log.d("PRVA",  "usersProfileModel.size = "+usersProfileModel.size)
+                Log.d("PRVA",  "usersProfileModel.size = "+cityCurrentWeatherModel.size)
                 adapter!!.notifyDataSetChanged()
             }
         })
         Log.d("PRVA",  "4")
-        adapter = ProfileRecyclerViewAdapter(usersProfileModel, this)
+        adapter = CityCurrentWeatherRecyclerViewAdapter(cityCurrentWeatherModel, this)
         //for (element in usersProfileModel) {
         //    Log.d("PRVA",  "element "+element.name?.first)
         //}
@@ -101,7 +101,7 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         viewModel.addUser("Ibague")
         //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
-        //    users.add(ProfileModel("User "+count, "Profesor de Movil", R.drawable.banana))
+        //    users.add(CityCurrentWeatherModel("User "+count, "Profesor de Movil", R.drawable.banana))
         //    count++
         //    adapter!!.updateData()
         //}
@@ -113,12 +113,12 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         navController = Navigation.findNavController(view)
     }
 
-    //override fun onListButtonInteraction(item: ProfileModel?) {
+    //override fun onListButtonInteraction(item: CityCurrentWeatherModel?) {
     //    users.remove(item)
     //    adapter!!.updateData()
     //}
 
-    override fun onListItemInteraction(item: ProfileModel?) {
+    override fun onListItemInteraction(item: CityCurrentWeatherModel?) {
         //Log.d("John", "HOLA! ")
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)

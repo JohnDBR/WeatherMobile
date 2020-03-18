@@ -6,10 +6,9 @@ import com.google.gson.Gson
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.ArrayList
 
 @Parcelize
-class ProfileModel(
+class CityCurrentWeatherModel(
     var coord: Coordinate,
     var weather : List<WheaterElement>,
     var base : String,
@@ -96,19 +95,19 @@ class ProfileModel(
     // Single RandomUser element
     companion object {
         var g = Gson()
-        fun getUser(response: JSONObject): ProfileModel? {//ArrayList<ProfileModel> {
-            //val list = ArrayList<ProfileModel>()
-            var element : ProfileModel? = null
+        fun getUser(response: JSONObject): CityCurrentWeatherModel? {//ArrayList<CityCurrentWeatherModel> {
+            //val list = ArrayList<CityCurrentWeatherModel>()
+            var element : CityCurrentWeatherModel? = null
             try {
                 //val info = response.getJSONArray("results")
                 //for (i in 0 until info.length()) {
                     //val persona = info.getJSONObject(i).toString()
                     //val temp =
-                        //g.fromJson(persona, ProfileModel::class.java)
+                        //g.fromJson(persona, CityCurrentWeatherModel::class.java)
                     //list.add(temp)
                 //}
                 Log.d("VideoVolleyLiveData",  response.toString())
-                element = g.fromJson(response.toString(), ProfileModel::class.java)
+                element = g.fromJson(response.toString(), CityCurrentWeatherModel::class.java)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }

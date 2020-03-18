@@ -8,18 +8,18 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONObject
 
-class RandomUserDao private constructor(var context: Context) {
+class CityCurrentWeatherDao private constructor(var context: Context) {
 
-    //private val userList = mutableListOf<ProfileModel>()
-    private val users = MutableLiveData<List<ProfileModel>>()
+    //private val userList = mutableListOf<CityCurrentWeatherModel>()
+    private val users = MutableLiveData<List<CityCurrentWeatherModel>>()
     //private var queue : RequestQueue = VolleySingleton.getInstance(context).requestQueue
 
     companion object {
         @Volatile
-        private var INSTANCE: RandomUserDao? = null
+        private var INSTANCE: CityCurrentWeatherDao? = null
         fun getInstance(context: Context) =
             INSTANCE ?: synchronized(this){
-                INSTANCE ?: RandomUserDao(context).also { INSTANCE = it }
+                INSTANCE ?: CityCurrentWeatherDao(context).also { INSTANCE = it }
             }
     }
 
@@ -27,7 +27,7 @@ class RandomUserDao private constructor(var context: Context) {
         VolleySingleton.getInstance(context).addToRequestQueue(getJsonObjectRequest(city))
     }
 
-    fun getUsers() : MutableLiveData<List<ProfileModel>> {
+    fun getUsers() : MutableLiveData<List<CityCurrentWeatherModel>> {
         return users;
     }
 
@@ -51,14 +51,14 @@ class RandomUserDao private constructor(var context: Context) {
     }
 
     fun parseObjectG(response: JSONObject) {
-        //var list = ProfileModel.getUser(response)
+        //var list = CityCurrentWeatherModel.getUser(response)
         //for (element in list) {
         //    Log.d("VideoVolleyLiveData",  "element "+element.name?.first)
         //    userList.add(element)
         //}
-        //users.value = ProfileModel.getUser(response) //userList
-        ProfileModel.getUser(response)?.let {
-            val cityList = mutableListOf<ProfileModel>()
+        //users.value = CityCurrentWeatherModel.getUser(response) //userList
+        CityCurrentWeatherModel.getUser(response)?.let {
+            val cityList = mutableListOf<CityCurrentWeatherModel>()
             if (users.value != null) {
                 cityList.addAll(users.value!!)
             }
@@ -70,7 +70,7 @@ class RandomUserDao private constructor(var context: Context) {
         // for (element in list) {
         //     Log.d("WebJson", "parseObjectG " + element.name?.first)
         //     users.add(
-        //         ProfileModel(element.name!!.first.toString(),element.name!!.last.toString(),
+        //         CityCurrentWeatherModel(element.name!!.first.toString(),element.name!!.last.toString(),
         //             R.drawable.banana,element.picture!!.large.toString(),element.email.toString(),element.phone.toString())
         //     )
         //}

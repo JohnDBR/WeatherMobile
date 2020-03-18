@@ -7,13 +7,13 @@
     <data>
         <variable
             name="user"
-            type="com.example.bonus.models.ProfileModel" />
+            type="com.example.bonus.models.CityCurrentWeatherModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DetailFragment">
+        tools:context=".CityForecastWeatherListFragment">
 
         <LinearLayout
             android:id="@+id/gravity"

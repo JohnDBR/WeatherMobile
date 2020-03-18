@@ -7,19 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import com.example.bonus.R
-import com.example.bonus.databinding.FragmentDetailBinding
-import com.example.bonus.databinding.FragmentItemBinding
-import com.example.bonus.models.ProfileModel
+import com.example.bonus.databinding.FragmentCityCurrentWeatherItemBinding
+import com.example.bonus.models.CityCurrentWeatherModel
 
 /**
  * A simple [Fragment] subclass.
  */
-class ItemFragment : Fragment() {//, View.OnClickListener {
+class CityCurrentWeatherItemFragment : Fragment() {//, View.OnClickListener {
 
-    lateinit var profileModel: ProfileModel
-    lateinit var mBinding: FragmentItemBinding
+    lateinit var cityCurrentWeatherModel: CityCurrentWeatherModel
+    lateinit var mBinding: FragmentCityCurrentWeatherItemBinding
     //lateinit var navController: NavController
 
     override fun onCreateView(
@@ -27,21 +24,21 @@ class ItemFragment : Fragment() {//, View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_item, container, false)
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item, container, false)
+        // return inflater.inflate(R.layout.fragment_city_current_weather_item, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_city_current_weather_item, container, false)
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //navController = Navigation.findNavController(view)
-        //profileModel = arguments!!.getParcelable("data")!!
-        // mBinding = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_detail)
-        //mBinding.user = profileModel
+        //cityCurrentWeatherModel = arguments!!.getParcelable("data")!!
+        // mBinding = DataBindingUtil.setContentView(this.requireActivity(), R.layout.fragment_city_forecast_weather_list)
+        //mBinding.user = cityCurrentWeatherModel
         //view.findViewById<Button>(R.id.bPlaces1).setOnClickListener(this)
 
         // This is not neccesary because we are using binding!
-        // view.findViewById<TextView>(R.id.place_title).text = profileModel.title
+        // view.findViewById<TextView>(R.id.place_title).text = cityCurrentWeatherModel.title
     }
 
     //override fun onClick(v: View?) {
