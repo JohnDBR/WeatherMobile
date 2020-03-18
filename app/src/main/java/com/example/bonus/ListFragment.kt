@@ -89,7 +89,16 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
         adapter!!.notifyDataSetChanged()
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
-        viewModel.addUser()
+        viewModel.addUser("Bogota")
+        viewModel.addUser("Medellin")
+        viewModel.addUser("Cali")
+        viewModel.addUser("Barranquilla")
+        viewModel.addUser("Cartagena")
+        viewModel.addUser("Soacha")
+        viewModel.addUser("Cucuta")
+        viewModel.addUser("Soledad")
+        viewModel.addUser("Bucaramanga")
+        viewModel.addUser("Ibague")
         //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
         //    users.add(ProfileModel("User "+count, "Profesor de Movil", R.drawable.banana))
@@ -110,7 +119,7 @@ class ListFragment : Fragment(), ProfileRecyclerViewAdapter.onListInteraction {
     //}
 
     override fun onListItemInteraction(item: ProfileModel?) {
-        Log.d("John", "HOLA! ")
+        //Log.d("John", "HOLA! ")
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)
     }

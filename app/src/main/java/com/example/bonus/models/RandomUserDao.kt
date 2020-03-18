@@ -23,17 +23,18 @@ class RandomUserDao private constructor(var context: Context) {
             }
     }
 
-    fun addUser() {
-        VolleySingleton.getInstance(context).addToRequestQueue(getJsonObjectRequest())
+    fun addUser(city : String = "Barranquilla") {
+        VolleySingleton.getInstance(context).addToRequestQueue(getJsonObjectRequest(city))
     }
 
     fun getUsers() : MutableLiveData<List<ProfileModel>> {
         return users;
     }
 
-    fun getJsonObjectRequest() : JsonObjectRequest {
+    fun getJsonObjectRequest(city : String = "Barranquilla") : JsonObjectRequest {
 
-        val url =  "https://randomuser.me/api/?results=20"
+        val url =
+            "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=f7d96811a87ec0449c105411e58cabbd&units=metric"
 
         return JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -43,6 +44,8 @@ class RandomUserDao private constructor(var context: Context) {
             },
             Response.ErrorListener{
                 Log.d("WebJson", "ERROR")
+                Log.d("WebJson", it.message)
+
             }
         )
     }
@@ -53,7 +56,17 @@ class RandomUserDao private constructor(var context: Context) {
         //    Log.d("VideoVolleyLiveData",  "element "+element.name?.first)
         //    userList.add(element)
         //}
-        users.value = ProfileModel.getUser(response) //userList
+        //users.value = ProfileModel.getUser(response) //userList
+        ProfileModel.getUser(response)?.let {
+            val cityList = mutableListOf<ProfileModel>()
+            if (users.value != null) {
+                cityList.addAll(users.value!!)
+            }
+            cityList.add(it)
+            //val weatherList = it.weather
+            Log.d("VideoVolleyLiveData",  "element "+it.weather.get(0).id)
+            users.value = cityList
+        }
         // for (element in list) {
         //     Log.d("WebJson", "parseObjectG " + element.name?.first)
         //     users.add(

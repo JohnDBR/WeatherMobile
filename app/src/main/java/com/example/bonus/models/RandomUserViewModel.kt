@@ -12,8 +12,8 @@ class RandomUserViewModel (application: Application) : AndroidViewModel(applicat
             randomUserDao = RandomUserDao.getInstance(this.getApplication())
         }
 
-        fun addUser(){
-            randomUserDao.addUser()
+        fun addUser(city : String = "Barranquilla"){
+            randomUserDao.addUser(city)
         }
 
         fun getUsers() : MutableLiveData<List<ProfileModel>> {
