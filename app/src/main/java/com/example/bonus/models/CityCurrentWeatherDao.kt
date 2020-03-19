@@ -31,6 +31,10 @@ class CityCurrentWeatherDao private constructor(var context: Context) {
         return cities;
     }
 
+    fun clearCities(){
+        cities.value = mutableListOf<CityCurrentWeatherModel>()
+    }
+
     fun getJsonObjectRequest(city : String = "Barranquilla") : JsonObjectRequest {
 
         val url =

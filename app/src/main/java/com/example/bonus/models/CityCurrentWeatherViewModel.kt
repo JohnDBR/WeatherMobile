@@ -19,4 +19,8 @@ class CityCurrentWeatherViewModel (application: Application) : AndroidViewModel(
         fun getCities() : MutableLiveData<List<CityCurrentWeatherModel>> {
             return cityCurrentWeatherDao.getCities();
         }
+
+        fun clearCities() {
+            cityCurrentWeatherDao.clearCities();
+        }
 }

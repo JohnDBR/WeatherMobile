@@ -18,6 +18,7 @@ import com.example.bonus.databinding.FragmentCityCurrentWeatherListBinding
 import com.example.bonus.models.CityCurrentWeatherViewModel
 
 import com.example.bonus.models.CityCurrentWeatherModel
+import com.example.bonus.utils.FormatUtil
 import kotlinx.android.synthetic.main.fragment_city_current_weather_list.view.*
 
 /**
@@ -76,6 +77,8 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
                 cityCurrentWeatherModel.clear()
                 for (element in cities) {
                     cityCurrentWeatherModel.add(element)
+                    Log.d("PRVA",  "citiesProfileModel.size = "+FormatUtil.getIconUrl(element.weather[0].icon))
+                    Log.d("PRVA",  "citiesProfileModel.size = "+FormatUtil.getTemperatureFormat(element.main.feels_like, element.main.temp_min, element.main.temp_max))
                 }
                 Log.d("PRVA",  "citiesProfileModel.size = "+cityCurrentWeatherModel.size)
                 adapter!!.notifyDataSetChanged()
@@ -100,6 +103,7 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
 
     fun loadData() {
         cityCurrentWeatherModel.clear()
+        viewModel.clearCities()
         adapter!!.notifyDataSetChanged()
         viewModel.addCity("Bogota")
         viewModel.addCity("Medellin")
