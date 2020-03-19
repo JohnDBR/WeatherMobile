@@ -1,5 +1,7 @@
 package com.example.bonus.utils
 
+import kotlin.math.roundToInt
+
 class FormatUtil {
 
     companion object {
@@ -34,7 +36,12 @@ class FormatUtil {
 
         @JvmStatic
         fun getTemperatureFormat(feels_like: String, temp_min: String, temp_max: String): String? {
-            return "$temp_max°/$temp_min° Feels like $feels_like°"
+            return "${temp_max.toFloat().roundToInt()}°/${temp_min.toFloat().roundToInt()}° Feels like ${feels_like.toFloat().roundToInt()}°"
+        }
+
+        @JvmStatic
+        fun getMainTemperatureFormat(temp: String): String {
+            return "${temp.toFloat().roundToInt()}°"
         }
 
         @JvmStatic

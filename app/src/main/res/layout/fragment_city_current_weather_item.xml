@@ -28,20 +28,32 @@
                     android:id="@+id/weather_icon"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="10dp"
+                    app:imageResourceUrl="@{FormatUtil.getIconUrl(city.weather[0].icon)}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/weatherLinearLayout"
+                    app:layout_constraintEnd_toStartOf="@+id/main_temperature"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/banana"
-                    app:imageResourceUrl="@{FormatUtil.getIconUrl(city.weather[0].icon)}"/>
+                    app:srcCompat="@drawable/banana" />
+
+                <TextView
+                    android:id="@+id/main_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{FormatUtil.getMainTemperatureFormat(city.main.temp)}"
+                    android:textSize="30sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/weatherLinearLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="27°" />
 
                 <LinearLayout
                     android:id="@+id/weatherLinearLayout"
-                    android:layout_width="300dp"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
