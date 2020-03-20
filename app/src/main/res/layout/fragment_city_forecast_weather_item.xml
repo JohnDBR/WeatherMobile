@@ -72,10 +72,10 @@
                         android:id="@+id/timestamp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="timestamp"
+                        android:text="@{FormatUtil.getTimestampShowableFormat(city.dt_txt)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="@{city.dt_txt}"
+                        tools:text="timestamp"
                         android:textColor="#FFFFFF"
                         android:background="#31302E"
                         android:gravity="center"/>

@@ -1,5 +1,7 @@
 package com.example.bonus.utils
 
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 class FormatUtil {
@@ -46,7 +48,11 @@ class FormatUtil {
 
         @JvmStatic
         fun getTimestampShowableFormat(timestamp: String): String? {
-            return "Cheese"
+            val elementDateTime = LocalDateTime.parse(
+                timestamp,
+                DateTimeFormatter.ofPattern("y-M-d HH:mm:ss")
+            )
+            return "${elementDateTime.dayOfWeek} at ${elementDateTime.hour}:00 to ${elementDateTime.hour + 3}:00"
         }
     }
 }
