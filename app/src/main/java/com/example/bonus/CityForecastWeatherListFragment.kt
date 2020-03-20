@@ -56,7 +56,7 @@ class CityForecastWeatherListFragment : Fragment(), CityForecastWeatherRecyclerV
                         DateTimeFormatter.ofPattern("y-M-d HH:mm:ss")
                     )
 
-                    if (elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt() == 0 || currentDateTime.hour == 0) {
+                    if (elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt() == 1 || currentDateTime.hour == 0) {
                         val hourDifference = currentDateTime.hour - elementDateTime.hour
                         if (hourDifference in 0..3 || currentDateTime.hour in 1..3) {
                             currentDateTime = currentDateTime.plusDays(1)
