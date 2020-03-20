@@ -65,7 +65,7 @@ class CityForecastWeatherListFragment : Fragment(), CityForecastWeatherRecyclerV
                     if (elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt() == 0 || currentDateTime.hour == 0) {
                         Log.d("PRVA",  "true") //${elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt()}")
                         val hourDifference = currentDateTime.hour - elementDateTime.hour
-                        if (hourDifference in 0..3) {
+                        if (hourDifference in 0..3 || currentDateTime.hour in 1..3) {
                             Log.d("PRVA",  "true ${elementDateTime.hour - currentDateTime.hour}")
                             currentDateTime = currentDateTime.plusDays(1)
                             cityForecastWeatherModel.add(element)
