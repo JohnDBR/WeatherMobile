@@ -45,11 +45,7 @@ class CityForecastWeatherListFragment : Fragment(), CityForecastWeatherRecyclerV
         viewModel = ViewModelProvider(this).get(CityForecastWeatherViewModel::class.java)
         viewModel.getCityForecast().observe(viewLifecycleOwner, Observer { cityForecast ->
             run {
-                Log.d("PRVA",  "3")
                 cityForecastWeatherModel.clear()
-                //if (elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt() == 0) {
-
-                //}
                 var currentDateTime = LocalDateTime.parse(
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("y-M-d HH:mm:ss")),
                     DateTimeFormatter.ofPattern("y-M-d HH:mm:ss")
@@ -60,28 +56,17 @@ class CityForecastWeatherListFragment : Fragment(), CityForecastWeatherRecyclerV
                         DateTimeFormatter.ofPattern("y-M-d HH:mm:ss")
                     )
 
-                    Log.d("PRVA",  "${currentDateTime.dayOfMonth} VS ${elementDateTime.dayOfMonth} | ${currentDateTime.hour} VS ${elementDateTime.hour}")
-
                     if (elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt() == 0 || currentDateTime.hour == 0) {
-                        Log.d("PRVA",  "true") //${elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt()}")
                         val hourDifference = currentDateTime.hour - elementDateTime.hour
                         if (hourDifference in 0..3 || currentDateTime.hour in 1..3) {
-                            Log.d("PRVA",  "true ${elementDateTime.hour - currentDateTime.hour}")
                             currentDateTime = currentDateTime.plusDays(1)
                             cityForecastWeatherModel.add(element)
-                        } else {
-                            Log.d("PRVA",  "false ${currentDateTime.hour - elementDateTime.hour}")
                         }
-                    } else {
-                        Log.d("PRVA",  "false") // ${elementDateTime.dayOfMonth.toInt() - currentDateTime.dayOfMonth.toInt()}")
                     }
-                    //Log.d("PRVA",  "$currentDateTime VS $elementDateTime / $days | $hours | $minutes")
                 }
-                Log.d("PRVA",  "citiesProfileModel.size = "+cityForecastWeatherModel.size)
                 adapter!!.notifyDataSetChanged()
             }
         })
-        Log.d("PRVA",  "4")
         adapter = CityForecastWeatherRecyclerViewAdapter(cityForecastWeatherModel, this)
         adapter!!.notifyDataSetChanged()
         view.forecast_list.layoutManager = LinearLayoutManager(context)

@@ -33,47 +33,18 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
     lateinit var mBinding: FragmentCityCurrentWeatherListBinding
 
     lateinit var viewModel : CityCurrentWeatherViewModel
-    //private var userList = mutableListOf<CityCurrentWeatherModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        // val view = inflater.inflate(R.layout.fragment_city_current_weather_list, container, false)
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_city_current_weather_list, container, false)
         val view = mBinding.root
-        //for (i in 1..20) {
-        //    users.add(
-        //        CityCurrentWeatherModel(
-        //            "brad",
-        //            "gibson",
-        //            R.drawable.banana,
-        //            "https://randomuser.me/api/portraits/med/men/75.jpg"
-        //        )
-        //    )
-        //    count++
-        //}
 
         viewModel = ViewModelProvider(this).get(CityCurrentWeatherViewModel::class.java)
         viewModel.getCities().observe(viewLifecycleOwner, Observer { cities ->
             run {
-                //userList = users as MutableList<CityCurrentWeatherModel> // We should be binding RandomUser class not CityCurrentWeatherModel anymore!
-                //Log.d("VideoVolleyLiveData",  "userListSize "+userList.size)
-                //for (element in users) {
-                //     Log.d("WebJson", "View model observer is being executed!")
-                //    usersProfileModel.add(
-                //         CityCurrentWeatherModel(
-                //             element.name!!.first.toString(),
-                //             element.name!!.last.toString(),
-                //             R.drawable.banana,element.picture!!.large.toString(),
-                //             element.email.toString(),
-                //             element.phone.toString()
-                //         )
-                //    )
-                //}
                 Log.d("PRVA",  "3")
-                //usersProfileModel = users as MutableList<CityCurrentWeatherModel>
                 cityCurrentWeatherModel.clear()
                 for (element in cities) {
                     cityCurrentWeatherModel.add(element)
@@ -86,13 +57,9 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
         })
         Log.d("PRVA",  "4")
         adapter = CityCurrentWeatherRecyclerViewAdapter(cityCurrentWeatherModel, this)
-        //for (element in usersProfileModel) {
-        //    Log.d("PRVA",  "element "+element.name?.first)
-        //}
         view.cities_list.layoutManager = LinearLayoutManager(context)
         view.cities_list.adapter = adapter
         loadData()
-        //VolleySingleton.getInstance(activity!!.applicationContext).addToRequestQueue(getJsonObjectRequest())
         //view.floatingActionButton.setOnClickListener() {
         //    users.add(CityCurrentWeatherModel("User "+count, "Profesor de Movil", R.drawable.banana))
         //    count++
@@ -128,7 +95,6 @@ class CityCurrentWeatherListFragment : Fragment(), CityCurrentWeatherRecyclerVie
     //}
 
     override fun onListItemInteraction(item: CityCurrentWeatherModel?) {
-        //Log.d("John", "HOLA! ")
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_listFragment_to_detailFragment, bundle)
     }
